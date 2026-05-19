@@ -24,17 +24,6 @@ const MOODS = [
   { key: 'playful', label: 'Playful', icon: '🎾' },
 ];
 
-const SCREEN_LABELS = [
-  ['home', 'Home'],
-  ['book1', 'Visit'],
-  ['book2', 'Pet'],
-  ['book3', 'Access'],
-  ['confirmed', 'Booked'],
-  ['live', 'Live'],
-  ['visits', 'Visits'],
-  ['complete', 'Report'],
-];
-
 const T = {
   bg2: '#E5F2F1',
   paper: '#FFFFFF',
@@ -167,8 +156,9 @@ function Home({ go, brand }) {
               key={s.k}
               onClick={() => setServiceType(s.k)}
               style={{
-                appearance: 'none', border: 0, cursor: 'pointer',
+                appearance: 'none', cursor: 'pointer',
                 background: on ? T.paper : 'rgba(255,255,255,.55)',
+                border: on ? 'none' : '1px solid rgba(51,39,42,.08)',
                 borderRadius: 20, padding: '14px 16px',
                 display: 'flex', alignItems: 'center', gap: 14, textAlign: 'left',
                 boxShadow: on
@@ -217,8 +207,9 @@ function Book1({ go, brand }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 6, marginBottom: 18 }}>
           {[['mon','M','13'],['tue','T','14'],['wed','W','15'],['thu','T','16'],['fri','F','17']].map(([k,l,d]) => (
             <button key={k} onClick={() => setDate(k)} style={{
-              appearance: 'none', border: 0, cursor: 'pointer',
+              appearance: 'none', cursor: 'pointer',
               background: date === k ? brand.accent : T.paper,
+              border: date === k ? 'none' : '1px solid rgba(51,39,42,.08)',
               color: date === k ? T.paper : T.ink,
               borderRadius: 18, padding: '10px 0', display: 'flex', flexDirection: 'column',
               alignItems: 'center', gap: 4,
@@ -349,8 +340,9 @@ function Book3({ go, brand }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, marginBottom: 14 }}>
           {[['key','🔑','Hidden key'],['lockbox','🔒','Lockbox'],['doorman','🛎','Doorman'],['person','👋','In person']].map(([k,e,l]) => (
             <button key={k} onClick={() => setEntry(k)} style={{
-              appearance: 'none', border: 0, cursor: 'pointer',
+              appearance: 'none', cursor: 'pointer',
               background: entry === k ? brand.accent : T.paper,
+              border: entry === k ? 'none' : '1px solid rgba(51,39,42,.08)',
               color: entry === k ? T.paper : T.ink,
               borderRadius: 18, padding: '14px',
               font: '600 13px Nunito, sans-serif', textAlign: 'left',
@@ -552,6 +544,7 @@ function Complete({ go, brand }) {
             <div key={m.key} style={{
               flex: 1, padding: '12px 0', borderRadius: 18,
               background: m.key === 'playful' ? brand.accent : T.paper,
+              border: m.key === 'playful' ? 'none' : '1px solid rgba(51,39,42,.08)',
               color: m.key === 'playful' ? T.paper : T.ink2,
               boxShadow: m.key === 'playful' ? `0 4px 14px ${brand.accent}66` : '0 2px 8px rgba(51,39,42,.05)',
               textAlign: 'center', font: '700 11px Nunito, sans-serif',
@@ -588,8 +581,9 @@ function Visits({ go, brand }) {
     const d = parts[parts.length - 1];
     return (
       <button onClick={onClick} style={{
-        appearance: 'none', border: 0, cursor: onClick ? 'pointer' : 'default',
+        appearance: 'none', cursor: onClick ? 'pointer' : 'default',
         background: T.paper, width: '100%',
+        border: '1px solid rgba(51,39,42,.08)',
         padding: 12, borderRadius: 18, display: 'flex', alignItems: 'center', gap: 12,
         textAlign: 'left', boxShadow: '0 2px 8px rgba(51,39,42,.04)',
       }}>
@@ -657,11 +651,6 @@ export default function BookingWidget({ brand }) {
             <S go={setScreen} brand={brand} />
           </div>
         </div>
-      </div>
-      <div className="bw-demo-strip" role="tablist" aria-label="Jump to screen">
-        {SCREEN_LABELS.map(([k, l]) => (
-          <button key={k} className={screen === k ? 'on' : ''} onClick={() => setScreen(k)}>{l}</button>
-        ))}
       </div>
     </>
   );
