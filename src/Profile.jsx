@@ -4,6 +4,7 @@ import { SITTERS } from './data.js';
 import BookingWidget from './BookingWidget.jsx';
 
 const BUILTIN_WIDGET_IDS = new Set(['mike-l', 'aiko-t']);
+const FULLPAGE_WIDGET_IDS = new Set(['aiko-t']);
 
 function getSitterFromQuery() {
   const id = new URLSearchParams(window.location.search).get('id');
@@ -120,6 +121,14 @@ export default function Profile() {
   };
 
   const clear = () => save('');
+
+  if (sitter && FULLPAGE_WIDGET_IDS.has(sitter.id)) {
+    return (
+      <div className="bw-fullpage">
+        <BookingWidget brand={sitterToBrand(sitter)} />
+      </div>
+    );
+  }
 
   return (
     <>

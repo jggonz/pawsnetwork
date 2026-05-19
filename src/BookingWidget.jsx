@@ -17,6 +17,13 @@ const GRADES = [
   { label: 'Home', grade: 'A', note: 'Plants watered, door locked' },
 ];
 
+const PET_PHOTOS = [
+  '/photos/IMG_9686.jpg',
+  '/photos/IMG_9637.jpg',
+  '/photos/IMG_9632.jpg',
+  '/photos/IMG_0375.jpg',
+];
+
 const MOODS = [
   { key: 'happy', label: 'Happy', icon: '🐾' },
   { key: 'chill', label: 'Chill', icon: '😌' },
@@ -135,6 +142,7 @@ function Top({ title, onBack }) {
 
 function Home({ go, brand }) {
   const [serviceType, setServiceType] = useState('walk');
+  const firstName = brand.name.split(' ')[0];
   const services = [
     { k: 'walk', l: 'Quick walk', d: '30–60 min', e: '🦮', tint: T.mint },
     { k: 'dropin', l: 'Drop-in visit', d: '1–4 hours', e: '🏡', tint: T.butter },
@@ -143,8 +151,8 @@ function Home({ go, brand }) {
   return (
     <div className="bw-screen-enter" style={{ padding: '20px 18px 24px' }}>
       <h1 className="bw-h" style={{ fontSize: 36, margin: '0 0 22px', letterSpacing: '-.02em' }}>
-        Book a
-        <span className="bw-hand" style={{ fontSize: 36, color: brand.accent, marginLeft: 10 }}>visit.</span>
+        Book a visit with{' '}
+        <span className="bw-hand" style={{ fontSize: 36, color: brand.accent }}>{firstName}.</span>
       </h1>
 
       <div className="bw-eyebrow" style={{ marginBottom: 10 }}>What do you need?</div>
@@ -441,7 +449,7 @@ function Live({ go, brand }) {
         <div className="bw-hand" style={{ fontSize: 22, color: brand.accent, marginBottom: 16 }}>last update 3:40 pm</div>
 
         <div style={{ borderRadius: 24, overflow: 'hidden', marginBottom: 14, boxShadow: '0 8px 30px rgba(51,39,42,.1)' }}>
-          <PhotoPH label="biscuit · rug life · 3:40 pm" tint="#FFD9C9" tint2={brand.accent} aspect="4/5" radius={0} />
+          <img src={PET_PHOTOS[0]} alt="rug life · 3:40 pm" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', display: 'block' }} />
         </div>
 
         <div className="bw-card" style={{ padding: 16, marginBottom: 14, display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -510,15 +518,10 @@ function Complete({ go, brand }) {
           </div>
         </div>
 
-        <div className="bw-eyebrow" style={{ marginBottom: 8 }}>Photos · 4</div>
+        <div className="bw-eyebrow" style={{ marginBottom: 8 }}>Photos · {PET_PHOTOS.length}</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 14 }}>
-          {[
-            [brand.accent, '#FFB4A2'],
-            [T.butter, '#FFC042'],
-            [T.mint, '#A8DCB7'],
-            [T.sky, '#A8D2E0'],
-          ].map(([t1, t2], i) => (
-            <PhotoPH key={i} tint={t1 + '80'} tint2={t2} aspect="1/1" radius={18} />
+          {PET_PHOTOS.map((src, i) => (
+            <img key={i} src={src} alt="" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', borderRadius: 18, display: 'block' }} />
           ))}
         </div>
 

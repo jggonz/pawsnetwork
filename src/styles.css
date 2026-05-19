@@ -709,6 +709,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 0.04em;
 }
 
+/* ---------- Standalone full-page widget shell ---------- */
+.bw-fullpage {
+  min-height: 100vh;
+  background: #fff;
+}
+.bw-fullpage .bw-shell {
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  min-height: 100vh;
+  border-radius: 0;
+  margin: 0;
+}
+
 /* ---------- Booking widget ("Sniff") ---------- */
 .bw-shell {
   width: 100%;
