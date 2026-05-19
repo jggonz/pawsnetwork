@@ -1,0 +1,8 @@
+name = "paws-and-play-network"
+compatibility_date = "2025-01-01"
+
+# Cloudflare Workers static-assets deployment.
+# Build first: `npm run build` (outputs to ./dist), then `npm run deploy:worker`.
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"
