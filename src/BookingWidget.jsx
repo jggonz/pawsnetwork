@@ -651,7 +651,6 @@ export default function BookingWidget({ brand }) {
   const S = SCREENS[screen] || Home;
   return (
     <>
-      <div className="bw-embed-label">↓ booking widget</div>
       <div className="bw-shell" style={{ '--bw-accent': brand.accent }}>
         <div className="bw-root">
           <div className="bw-scroll">
