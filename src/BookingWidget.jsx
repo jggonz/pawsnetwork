@@ -158,7 +158,7 @@ function Home({ go, brand }) {
               style={{
                 appearance: 'none', cursor: 'pointer',
                 background: on ? T.paper : 'rgba(255,255,255,.55)',
-                border: on ? 'none' : '1px solid rgba(51,39,42,.08)',
+                border: '1px solid rgba(51,39,42,.08)',
                 borderRadius: 20, padding: '14px 16px',
                 display: 'flex', alignItems: 'center', gap: 14, textAlign: 'left',
                 boxShadow: on
