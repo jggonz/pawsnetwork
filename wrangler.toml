@@ -1,4 +1,4 @@
-name = "paws-and-play-network"
+name = "pawsnetwork"
 compatibility_date = "2025-01-01"
 
 # Cloudflare Workers static-assets deployment.
