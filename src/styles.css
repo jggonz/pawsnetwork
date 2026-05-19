@@ -816,22 +816,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   text-align: center; margin-bottom: 8px;
 }
 
-/* ---------- Widget container ---------- */
-.widget-wrap {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 24px 56px 64px;
-}
-.widget-container {
-  position: relative;
-  background: white;
-  border: 3px solid var(--cream-deep);
-  border-radius: 32px;
-  padding: 32px;
-  min-height: 480px;
-  box-shadow: var(--shadow-pop);
-}
-
 /* ---------- responsive collapse ---------- */
 @media (max-width: 1200px) {
   .grid { grid-template-columns: repeat(3, 1fr); }
@@ -859,6 +843,4 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .profile-back { margin-left: 24px; }
   .footer { padding: 20px 24px; flex-direction: column; gap: 14px; }
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
-  .widget-wrap { padding: 12px 0 32px; }
-  .widget-container { border-radius: 0; border-left: none; border-right: none; padding: 16px 8px; }
 }
