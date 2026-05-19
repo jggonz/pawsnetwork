@@ -1,5 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { Brand, NavLinks, Footer } from './decor.jsx';
+import { SITTERS } from './data.js';
+import BookingWidget from './BookingWidget.jsx';
+
+const BUILTIN_WIDGET_IDS = new Set(['mike-l', 'aiko-t']);
+
+function getSitterFromQuery() {
+  const id = new URLSearchParams(window.location.search).get('id');
+  return SITTERS.find((s) => s.id === id) || null;
+}
+
+function sitterToBrand(s) {
+  const initials = (s.monogram || s.name.replace(/[^A-Z]/g, '')).slice(0, 3);
+  return { name: s.name, initials, accent: s.accent };
+}
 
 const storageKey = () => `widget-snippet:${window.location.pathname}${window.location.search}`;
 
@@ -69,18 +83,22 @@ function ConfigureModal({ initial, onSave, onClose }) {
 }
 
 export default function Profile() {
+  const sitter = typeof window !== 'undefined' ? getSitterFromQuery() : null;
+  const useBuiltin = sitter && BUILTIN_WIDGET_IDS.has(sitter.id);
   const [snippet, setSnippet] = useState('');
   const [showModal, setShowModal] = useState(false);
   const embedRef = useRef(null);
 
   useEffect(() => {
+    if (useBuiltin) return;
     try {
       const stored = window.localStorage.getItem(storageKey());
       if (stored) setSnippet(stored);
     } catch {}
-  }, []);
+  }, [useBuiltin]);
 
   useEffect(() => {
+    if (useBuiltin) return;
     if (!embedRef.current) return;
     embedRef.current.innerHTML = snippet || '';
     if (!snippet) return;
@@ -90,7 +108,7 @@ export default function Profile() {
       s.text = oldScript.text;
       oldScript.replaceWith(s);
     });
-  }, [snippet]);
+  }, [snippet, useBuiltin]);
 
   const save = (next) => {
     setSnippet(next);
@@ -118,6 +136,9 @@ export default function Profile() {
         </a>
 
         <div className="widget-wrap">
+          {useBuiltin ? (
+            <BookingWidget brand={sitterToBrand(sitter)} />
+          ) : (
           <div className="widget-container">
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginBottom: 16 }}>
               {snippet && (
@@ -179,12 +200,13 @@ export default function Profile() {
               </div>
             )}
           </div>
+          )}
         </div>
       </div>
 
       <Footer />
 
-      {showModal && (
+      {showModal && !useBuiltin && (
         <ConfigureModal
           initial={snippet}
           onSave={save}
