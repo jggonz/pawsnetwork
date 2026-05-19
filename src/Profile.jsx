@@ -117,18 +117,8 @@ export default function Profile() {
           Back to Sitter Search
         </a>
 
-        <div style={{ maxWidth: 960, margin: '0 auto', padding: '24px 56px 64px' }}>
-          <div
-            style={{
-              position: 'relative',
-              background: 'white',
-              border: '3px solid var(--cream-deep)',
-              borderRadius: 32,
-              padding: 32,
-              minHeight: 480,
-              boxShadow: 'var(--shadow-pop)',
-            }}
-          >
+        <div className="widget-wrap">
+          <div className="widget-container">
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginBottom: 16 }}>
               {snippet && (
                 <button
