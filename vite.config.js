@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         sitter: resolve(__dirname, 'sitter.html'),
+        qr: resolve(__dirname, 'qr.html'),
       },
     },
   },
